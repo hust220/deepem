@@ -1,0 +1,95 @@
+## INSTALLATION
+
+1.  Set the intel environment
+    Edit the 'env.sh' file, and then type the command below:
+
+        source env.sh
+
+    If the user doesn't want to override the default environment, then this command could be omitted.
+
+2.  Compilation
+    Edit the 'compile.sh' file, and then type the command below:
+
+        bash compile.sh
+
+## USAGE
+
+#### Preparation of the dataset
+
+Please download the KLH data set: https://pan.baidu.com/s/1sl7d1BR
+
+#### Training
+
+Here we take the KLH set as the example.
+Enter into the 'test' directory:
+
+    cd test
+
+If the user use openmpi, then type:
+
+    mpiexec -n 8 ../bin/rome_picker train -par KLH.train.pars
+    # if the user didn't type 'source env.sh' before, then:
+    # bash env.sh mpiexec -n 8 ../bin/rome_picker train -par KLH.train.pars
+
+If openmp is used instead of openmpi, then type:
+
+    export OMP_NUM_THREADS=8 # 8 could be changed 
+
+And then, type:
+
+    ../bin/rome_picker train -par KLH.train.pars
+    # if the user didn't type 'source env.sh' before, then:
+    # bash env.sh ../bin/rome_picker train -par KLH.train.pars
+   
+'KLH.train.pars' is an example of the parameter file of the training procedure.    
+
+The user could get help by typing:
+
+    ../bin/rome_picker train -help
+    # or
+    # ../bin/rome_picker train -h
+    # if the user didn't type 'source env.sh' before, then:
+    # bash env.sh ../bin/rome_picker train -h 
+
+#### Partical Picking
+
+We still take the KLH set as the example.
+Enter into the 'test' directory:
+
+    cd test
+
+If the user use openmpi, then type:
+
+    mpiexec -n 8 ../bin/rome_picker predict -par KLH.pars
+    # if the user didn't type 'source env.sh' before, then:
+    # bash env.sh mpiexec -n 8 ../bin/rome_picker predict -par KLH.pars
+
+If openmp is used instead of openmpi, then type:
+
+    export OMP_NUM_THREADS=8 # 8 could be changed 
+
+And then, type:
+
+    ../bin/rome_picker predict -par KLH.pars
+    # if the user didn't type 'source env.sh' before, then:
+    # bash env.sh ../bin/rome_picker predict -par KLH.pars
+
+'KLH.pars' is an example of the parameter file of the particle picking procedure.    
+
+The user could get help by typing:
+
+    ../bin/rome_picker predict -help
+    # or
+    # ../bin/rome_picker predict -h
+    # if the user didn't type 'source env.sh' before, then:
+    # bash env.sh ../bin/rome_picker predict -h 
+
+## Test
+
+Enter into the 'test' directory:
+
+    cd test
+    ../bin/test
+    # if the user didn't type 'source env.sh', then:
+    # bash env.sh ../bin/test
+
